@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { AdviceCard } from "./components/AdvideCard";
+import { DividerMobile } from "./icons/DividerMobile";
 import { DividerDesktop } from "./icons/DividerDesktop";
 import { Dice } from "./icons/Dice";
+import { useWindowDimensions } from "./hooks/UseWindowDimensions";
 
 interface Advice {
   id: string | number;
@@ -12,6 +14,7 @@ function App() {
   const [advice, setAdvice] = useState<Advice | null>(null);
   const [adviceError, setAdviceError] = useState(false);
   const isLoading = advice === null;
+  const { width } = useWindowDimensions();
 
   useEffect(() => {
     const fetchAdvice = async () => {
@@ -32,14 +35,14 @@ function App() {
   };
 
   return (
-    <main className="flex bg-dark-blue w-screen h-screen justify-center place-items-center">
-      <div className="flex flex-col max-w-[500px] h-max rounded-xl transition ease-in-out bg-dark-grayish-blue shadow-xl text-light-cyan relative justify-between">
+    <main className="min-w-[330px] flex bg-dark-blue w-screen h-screen justify-center place-items-center">
+      <div className="flex flex-col max-w-full sm:max-w-[500px] h-max rounded-xl transition ease-in-out bg-dark-grayish-blue shadow-xl text-light-cyan relative justify-between">
         <div className="flex flex-col justify-center items-center min-h-[200px]">
           {adviceError && "Something went wrong. Please try again."}
           {!adviceError && <AdviceCard isLoading={isLoading} data={advice} />}
         </div>
         <div className="mb-12 px-4 mx-auto self-end">
-          <DividerDesktop />
+          {width > 600 ? <DividerDesktop /> : <DividerMobile />}
         </div>
         <div className="absolute mx-auto bottom-[-1.4rem] w-full flex justify-center">
           <button
