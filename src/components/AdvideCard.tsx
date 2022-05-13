@@ -7,8 +7,7 @@ interface AdviceCardProps {
   } | null;
 }
 
-export function AdviceCard({ isLoading, data, children }: AdviceCardProps) {
-  console.log(isLoading, data);
+export function AdviceCard({ isLoading, data }: AdviceCardProps) {
   if (isLoading) return <p className="text-lg">Loading...</p>;
 
   return (
