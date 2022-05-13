@@ -49,6 +49,7 @@ function App() {
             className="transition ease-in-out hover:shadow-neon-green shadow-neon-green bg-neon-green  disabled:hover:shadow-grayish-blue disabled:shadow-grayish-blue disabled:bg-dark-blue rounded-full w-[3rem] h-[3rem] justify-center place-items-center flex shadow-md hover:shadow-lg"
             onClick={handleClick}
             disabled={isLoading}
+            aria-label="new advice"
           >
             {isLoading ? (
               <svg
